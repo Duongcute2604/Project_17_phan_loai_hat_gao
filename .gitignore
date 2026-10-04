@@ -15,8 +15,18 @@ models/*.joblib
 models/*.pkl
 
 # --- Bao cao ---
-reports/figures/*.png
-!reports/figures/.gitkeep
+# KHONG ignore reports/figures/*.png:
+# De tai yeu cau "bieu do doc duoc" trong bao cao,
+# va GV xem lai truc tiep tren GitHub ma khong can chay lai code.
+
+# --- File van phong (khong commit) ---
+*.docx
+~$*.docx
+*.pdf
+
+# --- Anh chup man hinh (sinh ra khi kiem tra giao dien) ---
+.openchamber/
+screenshots/
 
 # --- IDE / OS ---
 .vscode/
