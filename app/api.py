@@ -46,6 +46,7 @@ import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -433,6 +434,12 @@ def index() -> HTMLResponse:
             "<p>Giao dien web chua duoc them. Xem <a href='/docs'>API docs</a>.</p>"
         )
     return HTMLResponse(index_file.read_text(encoding="utf-8"))
+
+
+# Phuc vu file tinh (CSS, JS, anh).
+# Mount sau khi khai bao route "/" de khong che khuat route chinh.
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
 @app.exception_handler(FileNotFoundError)

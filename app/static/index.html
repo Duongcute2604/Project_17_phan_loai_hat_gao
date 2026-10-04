@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phân loại hạt gạo — Cammeo / Osmancik</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div>
+      <h1>Phân loại hạt gạo</h1>
+      <p>Cammeo / Osmancik từ 7 đặc trưng hình học — Đồ án Học máy, Bài 6</p>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <button class="active" data-screen="intro">1 · Giới thiệu</button>
+    <button data-screen="predict">2 · Phân loại</button>
+    <button data-screen="dashboard">3 · Đánh giá & Model card</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ MAN HINH 1: GIOI THIEU ============ -->
+  <section id="screen-intro" class="screen active">
+    <div class="card">
+      <h2>Phạm vi ứng dụng</h2>
+      <p class="lead">
+        Ứng dụng phân loại hai giống gạo <strong>Cammeo</strong> và
+        <strong>Osmancik</strong> dựa trên 7 đặc trưng hình học đo từ ảnh
+        chụp một hạt gạo đơn lẻ.
+      </p>
+
+      <h3>Đặc trưng sử dụng</h3>
+      <table id="feature-table">
+        <thead>
+          <tr><th>Đặc trưng</th><th>Mô tả</th><th>Đơn vị</th><th>Khoảng trong dữ liệu</th></tr>
+        </thead>
+        <tbody><tr><td colspan="4">Đang tải…</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Dữ liệu</h2>
+      <p>
+        <span class="badge">UCI ML Repository — #545</span>
+        <span class="badge">CC BY 4.0</span>
+        <span class="badge">3.810 mẫu</span>
+      </p>
+      <p class="lead" style="margin-bottom:0">
+        <a href="https://archive.ics.uci.edu/dataset/545/rice+cammeo+and+osmancik"
+           target="_blank" rel="noopener">
+          archive.ics.uci.edu/dataset/545
+        </a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Phát hiện quan trọng về dữ liệu</h2>
+      <p>
+        Trong phần lớn mẫu, hạt <strong>Cammeo có kích thước lớn hơn</strong>
+        (diện tích trung bình 14.163 pixel²) so với
+        <strong>Osmancik</strong> (11.550 pixel²). Cây quyết định học được
+        quy tắc này, nhưng hai giống có vùng chồng lấn nên không thể phân
+        biết tuyệt đối.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Giới hạn sử dụng</h2>
+      <div class="alert warn">
+        <strong>Công cụ sàng lọc sơ bộ — không thay thế kiểm nghiệm chất lượng.</strong>
+        <ul>
+          <li>Chỉ phân loại 2 giống có trong dữ liệu. Giống khác sẽ bị gán nhầm.</li>
+          <li>Đặc trưng phải được đo theo <em>cùng quy trình ảnh chụp</em> như dữ liệu gốc.</li>
+          <li>Không dùng cho định giá, pháp lý hoặc quyết định phát hành.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAN HINH 2: PHAN LOAI ============ -->
+  <section id="screen-predict" class="screen">
+    <div class="card">
+      <h2>Nhập đặc trưng của một hạt gạo</h2>
+      <p class="lead">
+        Nhập 7 giá trị đo được. Ô nào để trống hoặc sai kiểu, trang sẽ báo lỗi
+        ngay — không tự thay thế giá trị của bạn.
+      </p>
+
+      <form id="predict-form">
+        <div class="grid" id="form-grid"></div>
+
+        <div class="buttons">
+          <button type="submit" class="primary" id="btn-submit">Phân loại</button>
+          <button type="button" class="secondary" id="btn-example">Dùng mẫu ví dụ</button>
+          <button type="button" class="secondary" id="btn-clear">Xóa hết</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="alert danger hidden" id="form-errors"></div>
+
+    <div class="result hidden" id="result">
+      <div class="label">Kết quả dự đoán</div>
+      <div class="value" id="result-value">—</div>
+      <div class="conf" id="result-conf">—</div>
+
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-label"><span>Cammeo</span><span id="bar-cammeo-txt">—</span></div>
+          <div class="bar-track"><div class="bar-fill cammeo" id="bar-cammeo" style="width:0%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Osmancik</span><span id="bar-osmancik-txt">—</span></div>
+          <div class="bar-track"><div class="bar-fill osmancik" id="bar-osmancik" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert hidden" id="result-warnings"></div>
+    <div class="alert hidden" id="result-note"></div>
+
+    <div class="card hidden" id="rule-card">
+      <h2>Quy tắc cây quyết định đã áp dụng</h2>
+      <p class="lead">
+        Mô hình là cây quyết định, nên mọi dự đoán đều dùng được các quy tắc sau:
+      </p>
+      <pre class="rules" id="rule-text"></pre>
+      <h3>Toàn bộ cây</h3>
+      <pre class="rules" id="tree-full"></pre>
+    </div>
+  </section>
+
+  <!-- ============ MAN HINH 3: DASHBOARD ============ -->
+  <section id="screen-dashboard" class="screen">
+    <div class="card">
+      <h2>Model card</h2>
+      <div id="model-card"><p class="lead">Đang tải…</p></div>
+    </div>
+
+    <div class="card">
+      <h2>Ma trận nhầm lẫn trên tập kiểm thử</h2>
+      <div class="matrix" id="confusion"></div>
+    </div>
+
+    <div class="card">
+      <h2>Quy tắc cây quyết định</h2>
+      <p class="lead">
+        Đây là toàn bộ logic của mô hình — không có phần nào bị ẩn giấu.
+        Giống với một cây quyết định trong tài liệu y tế: đọc được, kiểm tra được.
+      </p>
+      <pre class="rules" id="tree-rules"></pre>
+    </div>
+
+    <div class="card">
+      <h2>Kết quả thí nghiệm</h2>
+      <div id="experiments"><p class="lead">Đang tải…</p></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Đồ án Học máy — Bài 6: Cây quyết định, cắt tỉa và rừng ngẫu nhiên ·
+    Dữ liệu: UCI Rice (Cammeo and Osmancik), CC BY 4.0
+  </div>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+/* =====================================================================
+   RICE CLASSIFICATION - CSS
+   Muc dich: moi thu doc duoc, ro rang, khong lan manh.
+   ===================================================================== */
+
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+
+  /* Cammeo = hat lon, mau nam ; Osmancik = hat nho, mau xanh */
+  --cammeo: #b45309;
+  --cammeo-bg: #fef3c7;
+  --osmancik: #0f766e;
+  --osmancik-bg: #ccfbf1;
+
+  --accent: #1e5f8c;
+  --warn: #b45309;
+  --warn-bg: #fffbeb;
+  --danger: #b91c1c;
+  --danger-bg: #fef2f2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* --- Tieu de --- */
+header {
+  background: var(--accent);
+  color: white;
+  padding: 1.5rem 0;
+}
+header .wrap { display: flex; align-items: center; gap: 1rem; }
+header h1 { margin: 0; font-size: 1.4rem; }
+header p { margin: 0.2rem 0 0; opacity: 0.9; font-size: 0.9rem; }
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+
+/* --- Dieu huong --- */
+nav {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+nav .wrap { display: flex; gap: 0.25rem; }
+nav button {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 500;
+}
+nav button:hover { color: var(--ink); background: #fafafa; }
+nav button.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* --- Khung noi dung --- */
+main { padding: 2rem 0 4rem; }
+.screen { display: none; }
+.screen.active { display: block; }
+
+h2 { font-size: 1.2rem; margin-top: 0; }
+h3 { font-size: 1rem; margin-top: 1.5rem; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.lead { color: var(--muted); margin-top: -0.5rem; }
+
+/* --- Form --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.1rem;
+}
+
+.field label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 0.25rem;
+}
+.field .desc { color: var(--muted); font-size: 0.78rem; margin-bottom: 0.4rem; }
+
+.field input {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(30, 95, 140, 0.12);
+}
+.field.invalid input { border-color: var(--danger); }
+.field .err { color: var(--danger); font-size: 0.78rem; margin-top: 0.25rem; display: none; }
+.field.invalid .err { display: block; }
+.field .range { color: var(--muted); font-size: 0.74rem; margin-top: 0.25rem; }
+
+/* --- Nut --- */
+.buttons { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+
+button.primary, button.secondary {
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+button.primary { background: var(--accent); color: white; }
+button.primary:hover:not(:disabled) { background: #17496e; }
+button.secondary { background: white; color: var(--accent); border-color: var(--accent); }
+button.secondary:hover { background: #f0f6fa; }
+button:disabled { opacity: 0.6; cursor: wait; }
+
+/* --- Ket qua --- */
+.result {
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  border: 2px solid transparent;
+}
+.result.cammeo { background: var(--cammeo-bg); border-color: var(--cammeo); }
+.result.osmancik { background: var(--osmancik-bg); border-color: var(--osmancik); }
+.result.hidden { display: none; }
+
+.result .label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.75; }
+.result .value { font-size: 2rem; font-weight: 700; margin: 0.2rem 0 0.5rem; }
+.result .conf { font-size: 0.95rem; }
+
+/* --- Thanh xac suat --- */
+.bars { margin-top: 1rem; }
+.bar-row { margin-bottom: 0.6rem; }
+.bar-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.2rem; }
+.bar-track { background: rgba(0,0,0,0.08); border-radius: 4px; height: 22px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+.bar-fill.cammeo { background: var(--cammeo); }
+.bar-fill.osmancik { background: var(--osmancik); }
+
+/* --- Canh bao --- */
+.alert {
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  border-left: 4px solid;
+}
+.alert.warn { background: var(--warn-bg); border-color: var(--warn); }
+.alert.danger { background: var(--danger-bg); border-color: var(--danger); }
+.alert.info { background: #eff6ff; border-color: var(--accent); }
+.alert ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+.alert.hidden { display: none; }
+
+/* --- Bang --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+th, td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+th { background: #f9fafb; font-weight: 600; font-size: 0.82rem; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* --- Ma tran nham nhieu --- */
+.matrix { display: inline-block; margin-top: 0.5rem; }
+.matrix table { margin: 0; }
+.matrix td, .matrix th { text-align: center; padding: 0.7rem 1rem; }
+.matrix .good { background: #dcfce7; }
+.matrix .bad { background: #fee2e2; }
+.matrix .label-cell {
+  text-align: right;
+  font-weight: 600;
+  background: #f9fafb;
+  font-size: 0.85rem;
+}
+
+/* --- Quy tac cay --- */
+pre.rules {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1.1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  font-family: "Consolas", "Courier New", monospace;
+}
+pre.rules .step { color: #93c5fd; }
+
+/* --- Bieu do --- */
+figure { margin: 1.5rem 0; }
+figure img { width: 100%; border-radius: 8px; border: 1px solid var(--line); }
+figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; text-align: center; }
+
+/* --- Danh sach gioi han --- */
+ul.limitations li { margin-bottom: 0.6rem; }
+ul.limitations strong { color: var(--danger); }
+
+.badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 0.4rem;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  background: var(--card);
+}
+
+/* --- Man hinh nho --- */
+@media (max-width: 640px) {
+  .result .value { font-size: 1.5rem; }
+  nav button { padding: 0.7rem 0.6rem; font-size: 0.85rem; }
+  .wrap { padding: 0 1rem; }
+}
