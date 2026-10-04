@@ -232,6 +232,11 @@ def experiment_ccp_alpha(X_train, y_train, n_splits: int = 5) -> pd.DataFrame:
         scores = cross_val_score(
             model, X_train, y_train, cv=cv, scoring=f1_scorer, n_jobs=-1
         )
+        # Do kich thuoc cay SAU khi cat, tren toan bo tap train.
+        # Day la bang chung cho thay cat tia lam cay don gian thu nao.
+        fitted = DecisionTreeClassifier(
+            max_depth=None, ccp_alpha=alpha, random_state=RANDOM_STATE
+        ).fit(X_train, y_train)
         rows.append(
             {
                 "ccp_alpha": alpha,
@@ -239,11 +244,15 @@ def experiment_ccp_alpha(X_train, y_train, n_splits: int = 5) -> pd.DataFrame:
                 "cv_f1_std": scores.std(),
                 "cv_f1_min": scores.min(),
                 "cv_f1_max": scores.max(),
+                "n_leaves": int(fitted.get_n_leaves()),
+                "n_nodes": int(fitted.tree_.node_count),
+                "train_acc": float(fitted.score(X_train, y_train)),
             }
         )
         print(
             f"  ccp_alpha={alpha:<8} CV F1 = {scores.mean():.4f} "
-            f"+/- {scores.std():.4f}   [{scores.min():.4f}, {scores.max():.4f}]"
+            f"+/- {scores.std():.4f}   [{scores.min():.4f}, {scores.max():.4f}]  "
+            f"la={fitted.get_n_leaves()}"
         )
 
     results = pd.DataFrame(rows)

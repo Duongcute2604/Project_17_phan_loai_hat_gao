@@ -1,0 +1,6 @@
+mo_hinh,valid_acc,valid_f1,train_time_s,predict_time_s,n_trees,n_leaves,giai_thich,kich_thuoc
+Cay khong gioi han,0.8986013986013986,0.8821138211382114,0.0118,0.0013,1,190,DOC DUOC (export_text),"1 cay, 190 la"
+Cay cat tia (ccp_alpha=0.002),0.9318181818181818,0.919917864476386,0.0122,0.0009,1,4,DOC DUOC (export_text),"1 cay, 4 la"
+Cay gioi han sau 6,0.9265734265734266,0.9146341463414634,0.0097,0.0018,1,31,DOC DUOC (export_text),"1 cay, 31 la"
+"Rung 100 cay, sau khong gioi han",0.9300699300699301,0.9183673469387755,0.1746,0.0299,100,15631,KHONG DOC DUOC (nhieu cay),"100 cay, 15631 la"
+"Rung 100 cay, sau toi da 10",0.9265734265734266,0.9142857142857143,0.1891,0.028,100,12279,KHONG DOC DUOC (nhieu cay),"100 cay, 12279 la"
