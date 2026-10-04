@@ -48,10 +48,17 @@ INFO = {
     "thoiGian": "HỌC KỲ 1 — NĂM HỌC 2025–2026",
 }
 
-# Thay bang ten that cua 2 thanh vien truoc khi in
+# THAY BANG TEN THAT CUA 2 THANH VIEN TRUOC KHI IN LAI
+#
+#   1. Mo tep scripts/make_report.py
+#   2. Sua danh sach duoi day: ten ho va ma sinh vien
+#   3. Chay lai:  python scripts/make_report.py
+#
+# Neu ten hien thi theo tai khoan GitHub thi ghi:
+#   ("Duongcute2604", "@Duongcute2604")
 SINH_VIEN = [
-    ("Nguyễn Văn A", "11223301"),
-    ("Nguyễn Văn B", "11223302"),
+    ("Duongcute2604", "@Duongcute2604"),
+    ("siinquyet", "@siinquyet"),
 ]
 
 
