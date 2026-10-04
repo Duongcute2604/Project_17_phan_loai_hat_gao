@@ -1,0 +1,186 @@
+{
+  "mo_hinh": "DecisionTreeClassifier",
+  "ccp_alpha": 0.005,
+  "random_state": 42,
+  "features": [
+    "Area",
+    "Perimeter",
+    "Major_Axis_Length",
+    "Minor_Axis_Length",
+    "Eccentricity",
+    "Convex_Area",
+    "Extent"
+  ],
+  "classes": [
+    "Cammeo",
+    "Osmancik"
+  ],
+  "pos_label": "Cammeo",
+  "valid_metrics": {
+    "accuracy": 0.9318181818181818,
+    "precision": 0.9256198347107438,
+    "recall": 0.9142857142857143,
+    "f1": 0.919917864476386,
+    "roc_auc": 0.9629657367534168,
+    "confusion_matrix": {
+      "labels": [
+        "Cammeo",
+        "Osmancik"
+      ],
+      "matrix": [
+        [
+          224,
+          21
+        ],
+        [
+          18,
+          309
+        ]
+      ],
+      "tn": 224,
+      "fp": 21,
+      "fn": 18,
+      "tp": 309
+    },
+    "n_samples": 572,
+    "classification_report": "              precision    recall  f1-score   support\n\n      Cammeo       0.93      0.91      0.92       245\n    Osmancik       0.94      0.94      0.94       327\n\n    accuracy                           0.93       572\n   macro avg       0.93      0.93      0.93       572\nweighted avg       0.93      0.93      0.93       572\n"
+  },
+  "test_metrics": {
+    "accuracy": 0.9090909090909091,
+    "precision": 0.9106382978723404,
+    "recall": 0.8734693877551021,
+    "f1": 0.8916666666666667,
+    "roc_auc": 0.9479997503588591,
+    "confusion_matrix": {
+      "labels": [
+        "Cammeo",
+        "Osmancik"
+      ],
+      "matrix": [
+        [
+          214,
+          31
+        ],
+        [
+          21,
+          306
+        ]
+      ],
+      "tn": 214,
+      "fp": 31,
+      "fn": 21,
+      "tp": 306
+    },
+    "n_samples": 572,
+    "classification_report": "              precision    recall  f1-score   support\n\n      Cammeo       0.91      0.87      0.89       245\n    Osmancik       0.91      0.94      0.92       327\n\n    accuracy                           0.91       572\n   macro avg       0.91      0.90      0.91       572\nweighted avg       0.91      0.91      0.91       572\n"
+  },
+  "cv_results": [
+    {
+      "ccp_alpha": 0.0,
+      "cv_f1_mean": 0.8757140059642967,
+      "cv_f1_std": 0.009670268648427753
+    },
+    {
+      "ccp_alpha": 0.0005,
+      "cv_f1_mean": 0.8838810959084065,
+      "cv_f1_std": 0.010103366855478713
+    },
+    {
+      "ccp_alpha": 0.001,
+      "cv_f1_mean": 0.901831539357454,
+      "cv_f1_std": 0.0037399084615894144
+    },
+    {
+      "ccp_alpha": 0.002,
+      "cv_f1_mean": 0.9112102784433649,
+      "cv_f1_std": 0.012113438257979317
+    },
+    {
+      "ccp_alpha": 0.005,
+      "cv_f1_mean": 0.9167709501575876,
+      "cv_f1_std": 0.006464147586734765
+    },
+    {
+      "ccp_alpha": 0.008,
+      "cv_f1_mean": 0.9167709501575876,
+      "cv_f1_std": 0.006464147586734765
+    },
+    {
+      "ccp_alpha": 0.01,
+      "cv_f1_mean": 0.9167709501575876,
+      "cv_f1_std": 0.006464147586734765
+    },
+    {
+      "ccp_alpha": 0.015,
+      "cv_f1_mean": 0.9167709501575876,
+      "cv_f1_std": 0.006464147586734765
+    },
+    {
+      "ccp_alpha": 0.02,
+      "cv_f1_mean": 0.9167709501575876,
+      "cv_f1_std": 0.006464147586734765
+    },
+    {
+      "ccp_alpha": 0.03,
+      "cv_f1_mean": 0.9167709501575876,
+      "cv_f1_std": 0.006464147586734765
+    },
+    {
+      "ccp_alpha": 0.05,
+      "cv_f1_mean": 0.9167709501575876,
+      "cv_f1_std": 0.006464147586734765
+    }
+  ],
+  "seed_stability": {
+    "seeds": [
+      42,
+      7,
+      2024,
+      123,
+      99
+    ],
+    "f1_scores": [
+      0.919917864476386,
+      0.9292929292929293,
+      0.8940677966101694,
+      0.925,
+      0.9083333333333333
+    ],
+    "std": 0.012732282924654682
+  },
+  "tree_rules": "|--- Major_Axis_Length <= 192.17\n|   |--- Major_Axis_Length <= 186.51\n|   |   |--- class: Osmancik\n|   |--- Major_Axis_Length >  186.51\n|   |   |--- class: Osmancik\n|--- Major_Axis_Length >  192.17\n|   |--- Perimeter <= 467.86\n|   |   |--- class: Cammeo\n|   |--- Perimeter >  467.86\n|   |   |--- class: Cammeo\n",
+  "n_leaves": 4,
+  "simplification_check": [
+    {
+      "max_depth": 1,
+      "n_leaves": 2,
+      "train_f1": 0.9201604083120671
+    },
+    {
+      "max_depth": 2,
+      "n_leaves": 4,
+      "train_f1": 0.9201604083120671
+    },
+    {
+      "max_depth": 3,
+      "n_leaves": 4,
+      "train_f1": 0.9201604083120671
+    },
+    {
+      "max_depth": 4,
+      "n_leaves": 4,
+      "train_f1": 0.9201604083120671
+    },
+    {
+      "max_depth": 5,
+      "n_leaves": 4,
+      "train_f1": 0.9201604083120671
+    }
+  ],
+  "moi_truong": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "sklearn": "1.9.1",
+    "timestamp": "2026-10-04T17:24:32"
+  }
+}
