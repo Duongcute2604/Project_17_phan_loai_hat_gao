@@ -1,0 +1,29 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# --- Du lieu raw (tai lai bang script, khong commit) ---
+data/raw/
+*.arff
+*.xlsx
+
+# --- San pham mo hinh (sinh ra khi chay lai) ---
+models/*.joblib
+models/*.pkl
+
+# --- Bao cao ---
+reports/figures/*.png
+!reports/figures/.gitkeep
+
+# --- IDE / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Nhieu ---
+.env
+*.log
