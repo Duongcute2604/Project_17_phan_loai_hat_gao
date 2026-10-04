@@ -1,0 +1,3 @@
+fe94e42046b829de21b92b0ffb6a22774fde021328cae799faa802a14e8dbed9  data/raw/rice+cammeo+and+osmancik.zip
+1af97883100c89de2ea2972f7a28d428f4f1c14711a61defc0b0569e9eb65665  data/raw/uci_545/Rice_Cammeo_Osmancik.arff
+c55797972f68f7e5f7dd5e72cca5ed365e83cd0d50684ecab0dfa05226f32818  data/rice.csv
